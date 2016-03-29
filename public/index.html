@@ -49,13 +49,17 @@
 <br>
 <br>
 <div ng-show="isActive(0)">
+  Giant chests looted: <span class="glyphicon glyphicon-minus" ng-click="decrementGiant()" aria-hidden="true"></span>{{nGiant}}</font><span class="glyphicon glyphicon-plus" ng-click="incrementGiant()" aria-hidden="true"></span>
+  <br>Magic chests looted: <span class="glyphicon glyphicon-minus" ng-click="decrementMagic()" aria-hidden="true"></span>{{nMagic}}<span class="glyphicon glyphicon-plus" ng-click="incrementMagic()" aria-hidden="true"></span>
     <div class="panel panel-primary">
+
+
       <div class="panel-heading">Select chests</div>
           <div class="panel-body">
-          <img ng-click="addChest('Silver')" src="img/Silver_Chest.png" style="height:100px"></img>
-          <img ng-click="addChest('Gold')" src="img/Golden_Chest.png" style="height:100px"></img>
-          <img ng-click="addChest('Magic')" src="img/Magical_Chest.png" style="height:100px"></img>
-          <img ng-click="addChest('Unknown')" src="img/Unknown.png" style="height:100px"></img>
+          <img ng-click="addChest('S')" src="img/Silver_Chest.png" style="height:100px"></img>
+          <img ng-click="addChest('G')" src="img/Golden_Chest.png" style="height:100px"></img>
+          <img ng-click="addChest('M')" src="img/Magical_Chest.png" style="height:100px"></img>
+          <img ng-click="addChest('I')" src="img/Unknown.png" style="height:100px"></img>
             </div>
       </div>
       <div class="panel panel-info">
@@ -64,14 +68,16 @@
 
          <span ng-repeat="chest in pattern track by $index">
 
-            <img ng-show="chest == 'Magic'" src="img/Magical_Chest.png" ng-click="removeChest($index)" style="height:30px"></img>
-            <img ng-show="chest == 'Gold'" src="img/Golden_Chest.png" ng-click="removeChest($index)" style="height:30px"></img>
-            <img ng-show="chest == 'Silver'" src="img/Silver_Chest.png" ng-click="removeChest($index)" style="height:30px"></img>
-            <img ng-show="chest == 'Unknown'" src="img/Unknown.png" ng-click="removeChest($index)" style="height:30px"></img>
+            <img ng-show="chest == 'M'" src="img/Magical_Chest.png" ng-click="removeChest($index)" style="height:30px"></img>
+            <img ng-show="chest == 'G'" src="img/Golden_Chest.png" ng-click="removeChest($index)" style="height:30px"></img>
+            <img ng-show="chest == 'S'" src="img/Silver_Chest.png" ng-click="removeChest($index)" style="height:30px"></img>
+            <img ng-show="chest == 'I'" src="img/Unknown.png" ng-click="removeChest($index)" style="height:30px"></img>
 
         </span>
         </div>
+        {{newCycle.length}}
       </div>
+
 
       <div class="container">
           <h4> Legend: </h4>
@@ -113,11 +119,10 @@
                   <p><b>Pattern: </b></p>
                 <span ng-repeat="i in r track by $index">
 
-                    <span class="badge">{{i[1]}}</span>
-                    <img ng-show="i[2] == 'Silver'" src="img/Silver_Chest.png" style="height:30px"></img>
-                    <img ng-show="i[2] == 'Gold'" src="img/Golden_Chest.png" style="height:30px"></img>
-                    <img ng-show="i[2] == 'Magic'" src="img/Magical_Chest.png" style="height:30px"></img>
-                    <hr ng-show="i[0] && !(r[$index+1][0])"><p ng-show="i[0] && !(r[$index+1][0])"><b>Possible nexts: </b></p>
+                    <img ng-show="i[2] == 'S'" src="img/Silver_Chest.png" style="height:30px"></img>
+                    <img ng-show="i[2] == 'G'" src="img/Golden_Chest.png" style="height:30px"></img>
+                    <img ng-show="i[2] == 'M'" src="img/Magical_Chest.png" style="height:30px"></img>
+                    <hr ng-show="i[0] && !(r[$index+1][0])"><p ng-show="i[0] && !(r[$index+1][0])"><b>Possible nexts: </b><br>Possible position in cycle: <span class="badge">{{i[1]}}</span></p>
 
                 </span>
             </div>
